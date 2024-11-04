@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <?php
   $BDProductos = array( 
-    array(1, 2, 3, 4, 5),                                       //El ID
-    array("Blusa", "Lentes", "Playera", "Pantalón", "Vestido"), //La Descripción
-    array(100, 350, 200, 420, 250),                             //El Precio
-    array("Dama", "Caballero", "Caballero", "Dama", "Dama"));   //Categoría
-  $iProductos = 5; //Indica el No. de Productos
+    array(1, 2, 3, 4, 5, 6, 7),                                       //El ID
+    array("Blusa", "Lentes", "Playera", "Pantalón", "Vestido","Peluche","Figura"), //La Descripción
+    array(100, 350, 200, 420, 250, 25, 20),                             //El Precio
+    array("Dama", "Caballero", "Caballero", "Dama", "Dama","Niño","Niño"));   //Categoría
+  $iProductos = 7; //Indica el No. de Productos
 
   $BDAlmacen = array( 
-    array(1, 2, 3, 4, 5), //El IDProducto
-    array(0,10, 5,15, 3)); //Las Existencias
+    array(1, 2, 3, 4, 5, 6, 7), //El IDProducto
+    array(0,10, 5, 15, 3, 3, 1)); //Las Existencias
 
-  $iAlmacen = 2; //El No. de existencias
+  $iAlmacen = 3; //El No. de existencias
   $BDVentas = array(
     array(2,3), //El IDProducto
     array(2,1), //La Cantidad
@@ -169,6 +169,7 @@
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="#">Damas</a></h4>
 									<h4 class="panel-title"><a href="#">Caballero</a></h4>
+									<h4 class="panel-title"><a href="#">Niño</a></h4>
 								</div>
 							</div>
 						</div><!--/category-products-->
@@ -204,6 +205,7 @@
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2><?php echo "$ " . $BDProductos[2][$i];?><h2>
+													
 												<p><?php echo "$ " . $BDProductos[1][$i];?></p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 											</div>
