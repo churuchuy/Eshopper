@@ -1,0 +1,7 @@
+1, Blusa,100,Damas
+2, Lentes,350,Caballeros
+3, Playera Azul,200,Caballeros
+4, Pantalon,420,Damas
+5, Vestido,250,Damas
+6, Peluche,25,Niños
+7, Figura,20,Niños
