@@ -1,23 +1,11 @@
 <!DOCTYPE html>
-<?php
-   if (isset($_GET['producto'])){
-      $producto = $_GET['producto'];
-      $precio = $_GET['precio']; 
-      $file = @fopen("carritocompras.txt", "a"); 
-      fwrite($file, "$producto,$precio".PHP_EOL);
-      fclose($file); 
-   } else {
-      $producto = ""; 
-      $precio = "";
-   } 
-?>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Carrito | E-Shopper</title>
+    <title>Checkout | E-Shopper</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -48,10 +36,7 @@
 								<li><a href="#"><i class="fa fa-envelope"></i> atencionclientes@gmail.com</a></li>
 							</ul>
 						</div>
-					</div>
-					<div class="col-sm-6">
-						
-					</div>
+					</div>					
 				</div>
 			</div>
 		</div><!--/header_top-->
@@ -62,15 +47,14 @@
 					<div class="col-sm-4">
 						<div class="logo pull-left">
 							<a href="index.php"><img src="images/home/logo.png" alt="" /></a>
-						</div>
-						
+						</div>						
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="checkout.php"><i class="fa fa-crosshairs"></i>Pagar</a></li>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i>Carrito</a></li>
-								<li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="login.php"><i class="fa fa-lock"></i>Login</a></li>
 							</ul>
 						</div>
 					</div>
@@ -93,14 +77,14 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.php">Inicio</a></li>
-								<li class="dropdown"><a href="#" class="active">Comprar<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Comprar<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.php">Productos</a></li>				
 										<li><a href="checkout.php">Pagar</a></li> 
 										<li><a href="cart.php">Carrito</a></li> 
 										<li><a href="login.php">Login</a></li> 
                                     </ul>
-                                </li> 
+                                </li>							
 							</ul>
 						</div>
 					</div>
@@ -118,15 +102,78 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="index.html">Inicio</a></li>
-				  <li class="active">Carrito</li>
+				  <li><a href="#">Inicio</a></li>
+				  <li class="active">Pagar</li>
 				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="step-one">
+				<h2 class="heading">Paso 1</h2>
+			</div>			
+			
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="shopper-info">
+							<p>Información Principal</p>
+							<form>
+								<input type="text" placeholder="Usuario">
+								<input type="password" placeholder="Password">
+								<input type="password" placeholder="Confirmar password">
+							</form>							
+							<a class="btn btn-primary" href="">Continuar</a>
+						</div>
+					</div>
+					<div class="col-sm-5 clearfix">
+						<div class="bill-to">
+							<p>Enviar A</p>
+							<div class="form-one">
+								<form>
+									<input type="text" placeholder="Nombre">
+									<input type="text" placeholder="Email*">
+									<input type="text" placeholder="Nombre*">
+									<input type="text" placeholder="Apellido*">
+									<input type="text" placeholder="Domicilio*">
+								</form>
+							</div>
+							<div class="form-two">
+								<form>
+									<input type="text" placeholder="Zip / Código Postal*">
+									<select>
+										<option>-- Estado --</option>
+										<option>Aguascalientes</option>
+										<option>CDMX</option>
+										<option>Chihuahua</option>
+										<option>Coahuila</option>
+										<option>Durango</option>
+										<option>Nuevo León</option>
+										<option>Sinaloa</option>
+										<option>Sonora</option>
+										<option>Zacatecas</option>
+									</select>
+									<input type="text" placeholder="Teléfono*">
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="order-message">
+							<p>Orden de Envío</p>
+							<textarea name="message"  placeholder="Notas importantes" rows="16"></textarea>
+							<label><input type="checkbox"> Enviar al mismo domicilio</label>
+						</div>	
+					</div>					
+				</div>
 			</div>
+			<div class="review-payment">
+				<h2>Revisar y Pagar</h2>
+			</div>
+
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Articulo</td>
+							<td class="image">Producto</td>
 							<td class="description"></td>
 							<td class="price">Precio</td>
 							<td class="quantity">Cantidad</td>
@@ -148,7 +195,7 @@
 							</td>
 							<td class="cart_description">
 								<h4><a href=""><?php echo $productoE; ?></a></h4>
-								<p>Web ID: 1089772</p>
+								<p>Categoría</p>
 							</td>
 							<td class="cart_price">
 								<p><?php echo $precioE; ?></p>
@@ -167,39 +214,49 @@
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-						<?php
-						 }
-					 }
-					 ?>
+							<?php 
+      }   //Cierra el Ciclo For
+      }     //Cierra la condición IF
+?>					
+						<tr>
+							<td colspan="4">&nbsp;</td>
+							<td colspan="2">
+								<table class="table table-condensed total-result">
+									<tr>
+										<td>Sub Total</td>
+										<td>$0</td>
+									</tr>
+									<tr>
+										<td>Impuestos</td>
+										<td>$0</td>
+									</tr>
+									<tr class="shipping-cost">
+										<td>Costo de Envío</td>
+										<td>Gratis</td>				
+									</tr>
+									<tr>
+										<td>Total</td>
+										<td><span>$0</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
+			<div class="payment-options">
+					<span>
+						<label><input type="checkbox">Transferencia</label>
+					</span>					
+					<span>
+						<label><input type="checkbox"> Paypal</label>
+					</span>
+				</div>
 		</div>
 	</section> <!--/#cart_items-->
 
-	<section id="do_action">
-		<div class="container">
-			<div class="heading">
-				<h3>Totales</h3>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li>Sub Total del carrito<span>$59</span></li>
-							<li>Impuestos <span>$2</span></li>
-							<li>Precio de envio<span>Free</span></li>
-							<li>Total <span>$61</span></li>
-						</ul>
-							<a class="btn btn-default update" href="">Actualizar</a>
-							<a class="btn btn-default check_out" href="">Vaciar Carrito</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section><!--/#do_action-->
+	
 
-<br>
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
@@ -207,26 +264,30 @@
 					<div class="col-sm-2">
 						<div class="companyinfo">
 							<h2><span>e</span>-shopper</h2>
-							<p>Proyecto software Punto de venta</p>
+							<p>Proyecto Software Punto de Venta</p>
 						</div>
+					</div>
+					<div class="col-sm-7">
+						
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
 							<img src="images/home/map.png" alt="" />
-							<p>Durango, DGO, MX</p>
+							<p>Durango, Dgo, México</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="footer-widget">
 			
 		</div>
+		
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. Todos los Derechos Reservados</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-left">Copyright © 2024 E-SHOPPER Inc. Todos los Derechos</p>					
 				</div>
 			</div>
 		</div>
@@ -237,7 +298,7 @@
 
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
 </body>
