@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php
-  $BDProductos = array(0,"CERO",0,"");
+session_start();
+$usuario=$_SESSION["usuario"];
+$email=$_SESSION["email"];
+$BDProductos = array(0,"CERO",0,"");
  $i=0; $iProductos=1; 
  $filas=file('archivo.txt'); 
- 
+
  foreach($filas as $value){
     list($id, $producto, $precio, $categoria) = explode(",", $value);
     array_push($BDProductos, $id);
@@ -12,13 +15,7 @@
     array_push($BDProductos, $categoria);
     $iProductos++;
   } 
-  $BDProductos = array( 
-    array(1, 2, 3, 4, 5, 6, 7),                                       //El ID
-    array("Blusa", "Lentes", "Playera", "Pantalón", "Vestido","Peluche","Figura"), //La Descripción
-    array(100, 350, 200, 420, 250, 25, 20),                             //El Precio
-    array("Dama", "Caballero", "Caballero", "Dama", "Dama","Niño","Niño"));   //Categoría
-  $iProductos = 7; //Indica el No. de Productos
-
+  
   $BDAlmacen = array( 
     array(1, 2, 3, 4, 5, 6, 7), //El IDProducto
     array(0,10, 5, 15, 3, 3, 1)); //Las Existencias
@@ -65,7 +62,10 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> +52 618 1200 776</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> atencionclientes@gmail.com</a></li>
+								<font color="green">
+<li> Usuario: <?php echo $usuario; ?></li>
+<li> Correo <i class="fa fa-envelope"></i>:<?php echo $email; ?></li>
+</font>
 							</ul>
 						</div>
 					</div>
@@ -201,25 +201,26 @@
 					  <?php
 					  $n=4;
             for ($i=1; $i < $iProductos; $i++){      
-
            ?>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
 											<?php
-											$img = $BDProductos[$n]; 
+											$img = $BDProductos[$n];
+											$productoB = $BDProductos[$n+1];
+											$precioB = $BDProductos[$n+2]; 
 											?>
 											<img src="images/home/<?php echo $img;?>.jpg"width="210" height="180" alt="" />
-											<h2><?php echo $BDProductos [$n+2]; ?></h2>						   
-											 <p><?php echo $BDProductos [$n+1]; ?> </p>											
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<h2><?php echo $productoB; ?></h2>						   
+											 <p><?php echo $precioB; ?> </p>											
+											<a href="cart.php?producto=<?php echo $productoB;?>&precio=<?php echo $precioB;?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<h2><?php echo $BDProductos [$n+1]; ?></h2>	
-												<p><?php echo $BDProductos [$n+2]; ?></p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+												<h2><?php echo $precioB; ?></h2>	
+												<p><?php echo $productoB; ?></p>
+												<a href="cart.php?producto=<?php echo $productoB;?>&precio=<?php echo $precioB;?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 											</div>
 										</div>
 								</div>								

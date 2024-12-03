@@ -1,30 +1,18 @@
 <!DOCTYPE html>
-<?php
-   if (isset($_GET['producto'])){
-      $producto = $_GET['producto'];
-      $precio = $_GET['precio']; 
-      $file = @fopen("carritocompras.txt", "a"); 
-      fwrite($file, "$producto,$precio".PHP_EOL);
-      fclose($file); 
-   } else {
-      $producto = ""; 
-      $precio = "";
-   } 
-?>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Carrito | E-Shopper</title>
+    <title>Login | E-Shopper</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
-	 <link href="css/main.css" rel="stylesheet">
-	 <link href="css/responsive.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -49,8 +37,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						
+					<div class="col-sm-6">						
 					</div>
 				</div>
 			</div>
@@ -62,15 +49,14 @@
 					<div class="col-sm-4">
 						<div class="logo pull-left">
 							<a href="index.php"><img src="images/home/logo.png" alt="" /></a>
-						</div>
-						
+						</div>						
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="checkout.php"><i class="fa fa-crosshairs"></i>Pagar</a></li>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i>Carrito</a></li>
-								<li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="login.php"><i class="fa fa-lock"></i>Login</a></li>
 							</ul>
 						</div>
 					</div>
@@ -93,7 +79,7 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.php">Inicio</a></li>
-								<li class="dropdown"><a href="#" class="active">Comprar<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.php">Productos</a></li>				
 										<li><a href="checkout.php">Pagar</a></li> 
@@ -113,95 +99,35 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-
-	<section id="cart_items">
+	
+	<section id="form"><!--form-->
 		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="index.html">Inicio</a></li>
-				  <li class="active">Carrito</li>
-				</ol>
-			</div>
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Articulo</td>
-							<td class="description"></td>
-							<td class="price">Precio</td>
-							<td class="quantity">Cantidad</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<?php 
-   if(file_exists('carritocompras.txt')){
-      $content = trim(file_get_contents('carritocompras.txt'), PHP_EOL);
-      $lineas = explode(PHP_EOL, $content);
-      $total = 0;
-      foreach($lineas as $linea){
-         list($productoE, $precioE) = explode(',', $linea);
-?>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href=""><?php echo  $productoE; ?></a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p><?php echo $precioE; ?></p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price"><?php echo $precioE; ?></p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<?php
-						$total = $total+$precioE;
-					}//cierra el ciclo for
-				}//cierra lacondicion IF
-				?>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</section> <!--/#cart_items-->
-
-	<section id="do_action">
-		<div class="container">
-			<div class="heading">
-				<h3>Totales</h3>
-			</div>
 			<div class="row">
-				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li>Sub Total del carrito<span><?php echo $total;?></span></li>
-							<li>Impuestos <span><?php echo $total * .16; ?></span></li>
-							<li>Precio de envio<span>Gratis</span></li>
-							<li>Total <span><?php echo $total + ($total * .16); ?></span></li>
-						</ul>
-							<a class="btn btn-default update" href="">Actualizar</a>
-							<a class="btn btn-default check_out" href="vaciarcarrito.php" target="_blank">Vaciar Carrito</a>
-					</div>
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Iniciar Sesión</h2>
+						<form action="iniciarsesion.php"method="post">
+							<input type="text" placeholder="Nombre" name="usuario" />
+							<input type="email" placeholder="Direccion  Email" name="email" />
+							<span>
+								<input type="checkbox" class="checkbox"> 
+								Mantener Sesión
+							</span>
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					
+				</div>
+				<div class="col-sm-4">
+					
 				</div>
 			</div>
 		</div>
-	</section><!--/#do_action-->
-
-<br>
+	</section><!--/form-->
+	
+	
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
@@ -209,26 +135,30 @@
 					<div class="col-sm-2">
 						<div class="companyinfo">
 							<h2><span>e</span>-shopper</h2>
-							<p>Proyecto software Punto de venta</p>
+							<p>Proyecto Software Punto de Venta</p>
 						</div>
+					</div>
+					<div class="col-sm-7">
+						
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
 							<img src="images/home/map.png" alt="" />
-							<p>Durango, DGO, MX</p>
+							<p>Durango, Dgo, México</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="footer-widget">
 			
 		</div>
+		
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. Todos los Derechos Reservados</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-left">Copyright © 2024 E-SHOPPER Inc. Todos los Derechos</p>					
 				</div>
 			</div>
 		</div>
@@ -236,10 +166,11 @@
 	</footer><!--/Footer-->
 	
 
-
+  
     <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
 </body>

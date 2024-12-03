@@ -1,7 +1,7 @@
-1, Blusa,100,Damas
-2, Lentes,350,Caballeros
-3, Playera Azul,200,Caballeros
-4, Pantalon,420,Damas
-5, Vestido,250,Damas
-6, Peluche,25,Niños
-7, Figura,20,Niños
+1, blusa blanca,100,Damas
+2, lentes,350,Hombre
+3, playera azul,200,Hombre
+4, pantalon,250,Damas
+5, vestido,300,Damas
+6, oso peluche,25,Niños
+7, figura,20,Niños
